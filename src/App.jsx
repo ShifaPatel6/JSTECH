@@ -3,7 +3,8 @@ import ReadCount from "./ReadCount";
 import UpperLower from "./UpperLower";
 import EmojiReplacer from "./EmojiReplacer";
 import FindReplace from "./FindReplace";
-import LanguageTracker from "../LanguageTracker";
+// import LanguageTracker from "../LanguageTracker";
+import ParagraphReplacerr from "./ParagraphReplacerr";
 function App() {
   return (
     <>
@@ -11,7 +12,8 @@ function App() {
       {/* <UpperLower></UpperLower> */}
       {/* <EmojiReplacer></EmojiReplacer> */}
       {/* <FindReplace></FindReplace> */}
-      <LanguageTracker></LanguageTracker>
+      {/* <LanguageTracker></LanguageTracker> */}
+      <ParagraphReplacerr></ParagraphReplacerr>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import react from "react";
 import { useState } from "react";
 
 const GetTrack = (text) => {
