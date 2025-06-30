@@ -11,8 +11,10 @@ import Productstore from "./Productstore";
 import Geolocation from "./Geolocation";
 import LoginFunction from "./LoginFunction";
 import PrivateRoute from "./components/PrivateRoute";
+import Similar from "./Similar";
 import { Routes, Route } from "react-router-dom";
 import Authlogin from "./Authlogin";
+import Header from "./components/Header";
 // import Dashboard from "./Dashboard";
 function App() {
   return (
@@ -26,7 +28,7 @@ function App() {
       {/* <CaseFormatter></CaseFormatter> */}
       {/* <Productstore></Productstore> */}
       {/* <Geolocation></Geolocation> */}
-
+      <Header></Header>
       <Routes>
         <Route path="/" element={<Authlogin />} />
         <Route
@@ -34,6 +36,14 @@ function App() {
           element={
             <PrivateRoute>
               <Productstore />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/Similar"
+          element={
+            <PrivateRoute>
+              <Similar />
             </PrivateRoute>
           }
         />

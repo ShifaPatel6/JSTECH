@@ -1,15 +1,29 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 import "../Css/Header.css"; // Import your CSS file for styles
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Logoutpop from "./Logoutpop"; // Import the Logoutpop component
 
 const Header = () => {
   const [showProfile, setShowProfile] = useState(false);
-  const[logout, setLogout] = useState(false);
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const [logout, setLogout] = useState(false);
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };
-  
+
+  const openLogoutPopup = () => {
+    setShowLogoutPopup(true);
+    setShowProfile(false); // Close profile dropdown when logout is clicked
+  };
+
+  useEffect(() => {
+    if (showLogoutPopup) {
+      document.body.style.overflow = "hidden"; // Prevent scrolling when popup is open
+    } else {
+      document.body.style.overflow = "auto"; // Allow scrolling when popup is closed
+    }
+  }, [showLogoutPopup]);
   return (
     <>
       <div
@@ -65,21 +79,32 @@ const Header = () => {
         {showProfile && (
           <div className="profile-dropdown">
             <div className="profile-dropdown-content">
-              <div className="profile-dropdown-header">
+              {/* <div className="profile-dropdown-header">
                 <img src="../src/assets/proicon.png" alt="profile" />
                 <p>Profile</p>
-              </div>
+              </div> */}
 
               <div className="profile-dropdown-header">
-                <img src="../src/assets/logout.png" alt="logout" />
-                <p onClick={handleLogout}>Logout</p>
+                <img src="../src/assets/orders.png" alt="setting" width={250} />
+                <p>My orders</p>
+              </div>
+              <div className="profile-dropdown-header">
+                <img src="../src/assets/Fav.png" alt="setting" />
+                <p>Favourites</p>
               </div>
               <div className="profile-dropdown-header">
                 <img src="../src/assets/setting.png" alt="setting" />
                 <p>Settings</p>
               </div>
+              <div className="profile-dropdown-header">
+                <img src="../src/assets/logout.png" alt="logout" />
+                <p onClick={openLogoutPopup}>Logout</p>
+              </div>
             </div>
           </div>
+        )}
+        {showLogoutPopup && (
+          <Logoutpop onClose={() => setShowLogoutPopup(false)} />
         )}
       </div>
     </>

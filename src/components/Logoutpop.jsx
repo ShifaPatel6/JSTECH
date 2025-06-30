@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-import { useState } from "react";
-const Logoutpop = () => {
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate hook
+import { useNavigate } from "react-router-dom";
+import "../Css/Logout.css"; // Import your CSS file for styles
+const Logoutpop = ({ onClose }) => {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -11,14 +11,34 @@ const Logoutpop = () => {
   };
 
   return (
-    <>
-      <div>
+    <div className="logout-popup">
+      <div className="logout-popup-content">
         <h2>Confirm Logout</h2>
         <p>Are you sure you want to logout?</p>
-        <button onClick={handleLogout}>Logout</button>
-        <button onClick={onClose}>Cancel</button>
+        <div className="logout-popup-buttons">
+          <button
+            onClick={handleLogout}
+            className="confirm-btn"
+            style={{
+              backgroundColor: "#ff810b",
+              color: "white",
+            }}
+          >
+            Logout
+          </button>
+          <button
+            onClick={onClose}
+            className="cancel-btn"
+            style={{
+              backgroundColor: "gray",
+              color: "white",
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

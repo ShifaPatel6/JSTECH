@@ -1,0 +1,38 @@
+.product-card {
+       transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.product-card:hover {
+       transform: translateY(-20px);
+       box-shadow: 0 10px 20px rgba(48, 42, 42, 0.2);
+}
+
+.product-card img {
+       mix-blend-mode: ;
+
+}
+
+
+
+.heart {
+       width: 25px;
+       height: 25px;
+       cursor: pointer;
+       transition: fill 0.3s ease;
+       fill: none;
+       stroke: rgb(173, 171, 171);
+       stroke-width: 1px;
+       margin-left: auto;
+       /* push to right if in flex */
+
+
+}
+
+.heart:hover {
+       fill: red;
+       stroke: white;
+
+
+
+}

@@ -42,6 +42,8 @@ const LoginFunction = ({ onSwitchToRegister }) => {
     }
   };
 
+ 
+
   return (
     <>
       <div className="login-container">
