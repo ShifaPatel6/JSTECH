@@ -78,28 +78,28 @@ async def search(file: UploadFile = File(...), category: str = Query(None)):
     print("📥 Received image upload...")
 
     image_data = await file.read()
-    print("📦 Image read complete.")
-
     image = Image.open(io.BytesIO(image_data)).convert("RGB")
-    print("🖼️ Image loaded.")
 
     query_vec = extract_embedding(image).astype("float32").reshape(1, -1)
-    print("🧠 Embedding extracted.")
-
     D, I = index.search(query_vec, k=10)
-    print("🔍 FAISS search complete.")
+
+    # Get uploaded image's best match → use it to infer category
+    top_id = product_ids[I[0][0]]
+    ref_product = get_product_metadata(top_id)
+    ref_category = ref_product.get("category")
+    print(f" Using reference category: {ref_category}")
 
     results = []
     for i in I[0]:
         product = get_product_metadata(product_ids[i])
-        print(f"→ Candidate: {product.get('title')} | Category: {product.get('category')}")
-        if product and (category is None or product["category"] == category):
+        if product and product["category"] == ref_category:
             results.append(product)
         if len(results) == 5:
             break
 
-    print("✅ Final results prepared.")
+    print("Final results prepared.")
     return JSONResponse(content={"results": results})
+
 @app.get("/")
 def root():
     return {"message": "✅ AI Image Search API is running"}

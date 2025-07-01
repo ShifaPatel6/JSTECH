@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TopPage from "./TopPage";
-import "../src/Css/Product.css"; // Import your CSS file for styles
+import "../src/Css/Product.css";
+import CategoryDropdown from "../src/components/CategoryDropdown"; // Import your CSS file for styles
 
 const Productstore = () => {
   const [products, setProducts] = useState([]);
@@ -18,21 +19,20 @@ const Productstore = () => {
         setProducts(data);
       });
   }, []);
-  useEffect(() => {
-    // Fetch Products
-    fetch("https://fakestoreapi.com/products/categories")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("categories:", data);
-        setCategories(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Fetch Products
+  //   fetch("https://fakestoreapi.com/products/categories")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("categories:", data);
+  //       setCategories(data);
+  //     });
+  // }, []);
 
   const FilteredProducts =
     selected === "all"
       ? products
       : products.filter((product) => product.category === selected);
-
   return (
     <>
       <div>
@@ -49,25 +49,7 @@ const Productstore = () => {
           padding: "10px",
         }}
       >
-        Categories :
-        <select
-          value={selected}
-          onChange={(e) => setSelected(e.target.value)}
-          style={{
-            padding: "10px",
-            fontSize: "1rem",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-          }}
-        >
-          {console.log("selected:", selected)}
-          <option value="all">All</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+        <CategoryDropdown selected={selected} onChange={setSelected} />
       </div>
       <div
         style={{

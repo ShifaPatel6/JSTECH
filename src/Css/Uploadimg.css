@@ -4,6 +4,24 @@
        display: flex;
        justify-content: start;
        align-items: center;
-       margin-top: 70px;
+       flex-direction: row;
+       margin-top: 60px;
        margin-left: 20px;
+       gap: .5rem;
+
+       /* align-content: center; */
+}
+
+.upload-img p {
+       font-size: 12px;
+       text-align: center;
+}
+
+.upload-img button {
+       padding: 5px;
+       font-size: .9rem;
+}
+
+.btn-text {
+       margin-top: 35px;
 }
