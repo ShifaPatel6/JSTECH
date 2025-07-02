@@ -62,6 +62,8 @@ def get_product_metadata(product_id: str):
 def load_product_catalog():
     for file in os.listdir(product_dir):
         if file.endswith((".jpg", ".jpeg", ".png")):
+            print("Indexing:", repr(file))  # shows full raw string
+
             path = os.path.join(product_dir, file)
             image = Image.open(path).convert("RGB")
             vec = extract_embedding(image)
@@ -76,7 +78,7 @@ async def startup_event():
 @app.post("/search")
 async def search(file: UploadFile = File(...), category: str = Query(None)):
     print("📥 Received image upload...")
-
+    
     image_data = await file.read()
     image = Image.open(io.BytesIO(image_data)).convert("RGB")
 
@@ -85,6 +87,8 @@ async def search(file: UploadFile = File(...), category: str = Query(None)):
 
     # Get uploaded image's best match → use it to infer category
     top_id = product_ids[I[0][0]]
+    print(f" Top match ID: {top_id}")
+    print(f" All product_ids: {product_ids}")
     ref_product = get_product_metadata(top_id)
     ref_category = ref_product.get("category")
     print(f" Using reference category: {ref_category}")

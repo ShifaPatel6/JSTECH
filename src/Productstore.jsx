@@ -35,10 +35,10 @@ const Productstore = () => {
       : products.filter((product) => product.category === selected);
   return (
     <>
-      <div>
+      {/* <div>
         <TopPage></TopPage>
-      </div>
-      <div
+      </div> */}
+      {/* <div
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -48,9 +48,9 @@ const Productstore = () => {
           marginTop: "20px",
           padding: "10px",
         }}
-      >
-        <CategoryDropdown selected={selected} onChange={setSelected} />
-      </div>
+      > */}
+      {/* <CategoryDropdown selected={selected} onChange={setSelected} /> */}
+      {/* </div> */}
       <div
         style={{
           display: "flex",
@@ -59,6 +59,7 @@ const Productstore = () => {
           gap: "20px",
           // marginTop: "50px",
           padding: "10px",
+          marginTop: "20px",
         }}
       >
         {FilteredProducts.map((product) => (

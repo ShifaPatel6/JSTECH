@@ -15,6 +15,7 @@ import Similar from "./Similar";
 import { Routes, Route } from "react-router-dom";
 import Authlogin from "./Authlogin";
 import Header from "./components/Header";
+import Dashboard from "./Dashboard";
 // import Dashboard from "./Dashboard";
 function App() {
   return (
@@ -32,10 +33,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Authlogin />} />
         <Route
-          path="/Productstore"
+          path="/Dashboard"
           element={
             <PrivateRoute>
-              <Productstore />
+              <Dashboard />
             </PrivateRoute>
           }
         />
@@ -44,6 +45,14 @@ function App() {
           element={
             <PrivateRoute>
               <Similar />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/Productstore"
+          element={
+            <PrivateRoute>
+              <Productstore />
             </PrivateRoute>
           }
         />

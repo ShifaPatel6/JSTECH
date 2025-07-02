@@ -56,8 +56,9 @@ const Similar = () => {
           </div>
 
           <button
-            className="btn btn-secondary btn-text "
+            className="btn btn-secondary btn-text"
             onClick={handleUpload}
+            disabled={!file} // ✅ disable when no file selected
           >
             Submit
           </button>
@@ -69,6 +70,18 @@ const Similar = () => {
               onChange={setCategory}
             ></CategoryDropdown>
           </div> */}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "20px",
+            // marginTop: "50px",
+            padding: "10px",
+            marginTop: "30px",
+          }}
+        >
           {results.map((item) => (
             <div
               key={item.id}
@@ -114,6 +127,7 @@ const Similar = () => {
                 alt={item.title}
                 style={{ width: "100%", height: "150px", objectFit: "contain" }}
               />
+
               <h2
                 style={{
                   fontWeight: "bold",

@@ -7,7 +7,6 @@ import Logoutpop from "./Logoutpop"; // Import the Logoutpop component
 const Header = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
-  const [logout, setLogout] = useState(false);
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };
@@ -28,7 +27,7 @@ const Header = () => {
     <>
       <div
         style={{
-          backgroundColor: "orange",
+          backgroundColor: "#450b51",
           width: "100%",
           padding: "10px",
           //    border: "1px solid #000",
@@ -48,7 +47,7 @@ const Header = () => {
           }}
         >
           <div
-            style={{ marginLeft: "20px", fontWeight: "bolder" }}
+            style={{ marginLeft: "20px", fontWeight: "bolder", color: "white" }}
             className="header-text"
           >
             BE{" "}
@@ -57,6 +56,7 @@ const Header = () => {
                 backgroundColor: "white",
                 padding: "10px",
                 borderRadius: "20px",
+                color: "black",
               }}
             >
               FASHION

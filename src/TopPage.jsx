@@ -18,7 +18,7 @@ const TopPage = () => {
             </div>
             <div className="buttons-container">
               <div className="shop-now-button ">
-                <div >Shop Now</div>
+                <div>Shop Now</div>
                 <img src="../src/assets/arraow.png" alt="" width={43} />
               </div>
               <div className="shop-now-button">

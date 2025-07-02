@@ -31,7 +31,7 @@ const LoginFunction = ({ onSwitchToRegister }) => {
 
       if (res.ok) {
         localStorage.setItem("token", data.accessToken);
-        navigate("/Productstore");
+        navigate("/Dashboard");
         alert("✅ Login successful!");
       } else {
         setError(data.message || "Invalid credentials");
@@ -41,8 +41,6 @@ const LoginFunction = ({ onSwitchToRegister }) => {
       setError("Network error");
     }
   };
-
- 
 
   return (
     <>
