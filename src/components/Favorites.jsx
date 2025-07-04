@@ -1,79 +1,24 @@
-import React, { useState, useEffect } from "react";
-import TopPage from "./TopPage";
-import "../src/Css/Product.css";
 import { useContext } from "react";
-import { FavoriteContext } from "../src/Contexts/FavContext";
+import { FavoriteContext } from "../Contexts/FavContext";
 
-import CategoryDropdown from "../src/components/CategoryDropdown"; // Import your CSS file for styles
+const Favorites = () => {
+  const { favorites } = useContext(FavoriteContext);
 
-const Productstore = () => {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  //   const [filtered, setFiltered] = useState([]);
-  const [selected, setSelected] = useState("all");
-  const [showMsg, setShowMsg] = useState(false);
-
-  useEffect(() => {
-    // Fetch Products
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Products:", data);
-        setProducts(data);
-      });
-  }, []);
-  // useEffect(() => {
-  //   // Fetch Products
-  //   fetch("https://fakestoreapi.com/products/categories")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("categories:", data);
-  //       setCategories(data);
-  //     });
-  // }, []);
-  const { addToFavorites } = useContext(FavoriteContext);
-
-  const FilteredProducts =
-    selected === "all"
-      ? products
-      : products.filter((product) => product.category === selected);
-
-  const handleAddFavMsg = (products) => {
-    addToFavorites(products);
-    setShowMsg(true);
-    setTimeout(() => setShowMsg(false), 1500); // auto-hide after 1.5s
-    console.log("added");
-  };
   return (
-    <>
-      {/* <div>
-        <TopPage></TopPage>
-      </div> */}
-      {/* <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "start",
-          gap: "10px",
-          alignItems: "center",
-          marginTop: "20px",
-          padding: "10px",
-        }}
-      > */}
-      {/* <CategoryDropdown selected={selected} onChange={setSelected} /> */}
-      {/* </div> */}
+    <div>
+      <h2 style={{marginTop:'8%',textAlign:'center'}}>My Favorites</h2>
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
+       //    justifyContent: "center",
           gap: "20px",
           // marginTop: "50px",
           padding: "40px",
-          marginTop: "20px",
+       //    marginTop: "20px",
         }}
       >
-        {FilteredProducts.map((product) => (
+        {favorites.map((product) => (
           <div
             key={product.id}
             style={{
@@ -103,9 +48,10 @@ const Productstore = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 className="heart"
                 viewBox="0 0 24 24"
-                onClick={() => handleAddFavMsg(product)}
+                onClick={() => addToFavorites(product)}
               >
                 <title>Add to fav</title>
+
                 <path
                   d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 
            5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 
@@ -144,9 +90,8 @@ const Productstore = () => {
             </div>
           </div>
         ))}
-        {showMsg && <div className="fav-popup">Added to Favorites</div>}
       </div>
-    </>
+    </div>
   );
 };
-export default Productstore;
+export default Favorites;

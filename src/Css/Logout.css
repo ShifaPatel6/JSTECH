@@ -15,10 +15,10 @@
        max-height: 300px;
 
        padding: 20px;
-       border: 2px solid #ff810b;
+       border: 2px solid #ffffff;
        border-radius: 20px;
        background-color: white;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       box-shadow: 0 4px 8px rgba(165, 164, 164, 0.76);
        z-index: 1000;
        text-align: center;
 

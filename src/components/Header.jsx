@@ -3,6 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import "../Css/Header.css"; // Import your CSS file for styles
 import { useState, useEffect } from "react";
 import Logoutpop from "./Logoutpop"; // Import the Logoutpop component
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -10,6 +11,8 @@ const Header = () => {
   const handleProfileClick = () => {
     setShowProfile(!showProfile);
   };
+
+  const navigate = useNavigate();
 
   const openLogoutPopup = () => {
     setShowLogoutPopup(true);
@@ -90,7 +93,7 @@ const Header = () => {
               </div>
               <div className="profile-dropdown-header">
                 <img src="../src/assets/Fav.png" alt="setting" />
-                <p>Favourites</p>
+                <p onClick={() => navigate("/Favorites")} >Favourites</p>
               </div>
               <div className="profile-dropdown-header">
                 <img src="../src/assets/setting.png" alt="setting" />

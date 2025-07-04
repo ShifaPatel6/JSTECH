@@ -1,12 +1,19 @@
 import React from "react";
 import TopPage from "./TopPage";
 import Categories from "./Categories";
+import Bottompage from "./Bottompage";
+import Productstore from "./Productstore";
 
 const Dashboard = () => {
   return (
     <>
-      <TopPage></TopPage>
-      <Categories></Categories>
+      <div style={{ overflow: "hidden" }}>
+        <TopPage></TopPage>
+        <Categories></Categories>
+        <Productstore></Productstore>
+
+        <Bottompage></Bottompage>
+      </div>
     </>
   );
 };

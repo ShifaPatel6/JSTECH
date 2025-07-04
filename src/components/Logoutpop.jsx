@@ -20,7 +20,7 @@ const Logoutpop = ({ onClose }) => {
             onClick={handleLogout}
             className="confirm-btn"
             style={{
-              backgroundColor: "#ff810b",
+              backgroundColor: "#450b51",
               color: "white",
             }}
           >

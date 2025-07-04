@@ -16,8 +16,11 @@ import { Routes, Route } from "react-router-dom";
 import Authlogin from "./Authlogin";
 import Header from "./components/Header";
 import Dashboard from "./Dashboard";
-// import Dashboard from "./Dashboard";
+import Bottompage from "./Bottompage";
+import Favorites from "./components/Favorites";
 function App() {
+  const isLoggedIn = !!localStorage.getItem("token");
+
   return (
     <>
       {/* <ReadCount></ReadCount> */}
@@ -29,7 +32,9 @@ function App() {
       {/* <CaseFormatter></CaseFormatter> */}
       {/* <Productstore></Productstore> */}
       {/* <Geolocation></Geolocation> */}
-      <Header></Header>
+
+      {isLoggedIn && <Header />}
+
       <Routes>
         <Route path="/" element={<Authlogin />} />
         <Route
@@ -53,6 +58,22 @@ function App() {
           element={
             <PrivateRoute>
               <Productstore />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/Bottompage"
+          element={
+            <PrivateRoute>
+              <Bottompage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/Favorites"
+          element={
+            <PrivateRoute>
+              <Favorites />
             </PrivateRoute>
           }
         />

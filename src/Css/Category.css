@@ -10,38 +10,25 @@
 
 }
 
-.cat-img img {
+.cat-text img {
+       height: auto;
+       width: 100%;
+       max-width: 200px;
        border-top-left-radius: 120px;
        border-top-right-radius: 120px;
        cursor: pointer;
        box-shadow: 0 10px 20px rgba(48, 42, 42, 0.2);
-
-
-}
-
-.cat-text {
-       /* display: flex; */
-       text-align: center;
-       width: 100%;
-       max-width: 250px;
-
-
-}
-
-.cat-text img {
-       display: block;
-       height: auto;
-       width: 100%;
 }
 
 .cat-text h5 {
        margin-top: 20px;
+       text-align: center;
 }
 
 .Popular {
        background-color: #450b51;
        width: 25%;
-       padding: 8px;
+       /* padding: px; */
        margin-top: 25px;
        text-align: center;
        font-size: 1.9rem;
@@ -50,8 +37,93 @@
        border-bottom-right-radius: 110px;
 }
 
+.Headline {
+       display: flex;
+       flex-direction: row;
+       gap: 1.5rem;
+}
+
+.headline-ticker {
+       width: 100%;
+       overflow: hidden;
+       white-space: nowrap;
+       position: relative;
+       overflow: hidden;
+       /* ✅ Keep container fixed */
+
+}
+
+.cat-text {
+       width: 200px;
+       /* ✅ Fixed card width */
+
+}
+
+.Head {
+       border-bottom-right-radius: 0%;
+       border-top-right-radius: 0%;
+       border-top-left-radius: 110px;
+       border-bottom-left-radius: 110px;
+       width: 100%;
+       background-color: white;
+       border: 2px solid #450b51;
+       position: relative;
+       white-space: nowrap;
+       position: relative;
+       overflow: hidden;
+       background-color: rgb(211, 208, 208);
+}
+
+.Headline1 {
+       display: flex;
+       width: max-content;
+       animation: scrollText 15s linear infinite;
+
+}
+
+.Headline1 span {
+       display: inline-block;
+       padding-right: 2rem;
+       /* gap between repeated text */
+       white-space: nowrap;
+       font-size: 1.5rem;
+       color: black;
+}
+
+@keyframes scrollText {
+       0% {
+              transform: translateX(0%);
+       }
+
+       100% {
+              transform: translateX(-50%);
+       }
+}
+
 @media (max-width: 768px) {
        .Popular {
               width: 50%;
        }
+
+       .cat-img {
+              margin-top: auto;
+
+       }
+
+       .cat-text img {
+              display: block;
+              height: auto;
+              width: 100%;
+
+       }
+
+       .cat-text {
+              width: 25%;
+
+       }
+
+       .cat-text h5 {
+              font-size: 0.8rem;
+       }
+
 }

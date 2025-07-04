@@ -89,7 +89,7 @@ const LoginFunction = ({ onSwitchToRegister }) => {
           <a href="/" style={{ color: "#007bff" }}>
             Forgot Password?
           </a>
-          <p>
+          <p style={{ color: "white" }}>
             Don’t have an account?{" "}
             <span
               style={{ color: "#007bff", cursor: "pointer" }}
