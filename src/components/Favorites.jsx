@@ -1,21 +1,29 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FavoriteContext } from "../Contexts/FavContext";
+import "../Css/Product.css";
 
 const Favorites = () => {
-  const { favorites } = useContext(FavoriteContext);
+  const { favorites, RemoveFavorites } = useContext(FavoriteContext);
+  const [showMsg, setShowMsg] = useState(false);
+
+  const handleRemove = (id) => {
+    RemoveFavorites(id);
+    setShowMsg(true);
+    setTimeout(() => setShowMsg(false), 1500);
+  };
 
   return (
     <div>
-      <h2 style={{marginTop:'8%',textAlign:'center'}}>My Favorites</h2>
+      <h2 style={{ marginTop: "8%", textAlign: "center" }}>My Favorites</h2>
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-       //    justifyContent: "center",
+          //    justifyContent: "center",
           gap: "20px",
           // marginTop: "50px",
           padding: "40px",
-       //    marginTop: "20px",
+          //    marginTop: "20px",
         }}
       >
         {favorites.map((product) => (
@@ -46,11 +54,11 @@ const Favorites = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="heart"
+                className="heart2"
                 viewBox="0 0 24 24"
-                onClick={() => addToFavorites(product)}
+                onClick={() => handleRemove(product.id)}
               >
-                <title>Add to fav</title>
+                <title>Remove from Fav</title>
 
                 <path
                   d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 
@@ -91,6 +99,7 @@ const Favorites = () => {
           </div>
         ))}
       </div>
+      {showMsg && <div className="fav-popup">Removed from Favorites</div>}
     </div>
   );
 };

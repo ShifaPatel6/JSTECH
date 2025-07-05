@@ -15,6 +15,18 @@
 
 }
 
+.heart2 {
+       fill: red;
+       stroke: white;
+       width: 25px;
+       height: 25px;
+       cursor: pointer;
+       transition: fill 0.3s ease;
+       stroke-width: 1px;
+       margin-left: auto;
+       /* push to right if in flex */
+}
+
 
 .heart {
        width: 25px;
@@ -33,9 +45,11 @@
 .heart:hover {
        fill: red;
        stroke: white;
+}
 
-
-
+.heart.filled {
+       fill: red;
+       stroke: white;
 }
 
 .fav-popup {

@@ -1,46 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "../src/Css/Product.css";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { FavoriteContext } from "../src/Contexts/FavContext";
-import { useNavigate } from "react-router-dom";
+import { FavoriteContext } from "../Contexts/FavContext";
 
-const Productstore = () => {
-  const navigate = useNavigate();
-
+const CatProducts = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  //   const [filtered, setFiltered] = useState([]);
-  const [selected, setSelected] = useState("all");
-  const [showMsg, setShowMsg] = useState("");
-
-  useEffect(() => {
-    // Fetch Products
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Products:", data);
-        setProducts(data);
-      });
-  }, []);
-  // useEffect(() => {
-  //   // Fetch Products
-  //   fetch("https://fakestoreapi.com/products/categories")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("categories:", data);
-  //       setCategories(data);
-  //     });
-  // }, []);
+  const location = useLocation();
+  const [showMsg, setShowMsg] = useState(false);
+  const category = location.state?.category;
   const { addToFavorites, favorites, RemoveFavorites } =
     useContext(FavoriteContext);
-  const FilteredProducts =
-    selected === "all"
-      ? products
-      : products.filter((product) => product.category === selected);
-
+  useEffect(() => {
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, [category]);
   const handleToggleFavorite = (product) => {
     const isAlreadyFav = favorites.some((fav) => fav.id === product.id);
-
     if (isAlreadyFav) {
       RemoveFavorites(product.id);
       setShowMsg("Removed from Fav");
@@ -54,22 +31,7 @@ const Productstore = () => {
 
   return (
     <>
-      {/* <div>
-        <TopPage></TopPage>
-      </div> */}
-      {/* <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "start",
-          gap: "10px",
-          alignItems: "center",
-          marginTop: "20px",
-          padding: "10px",
-        }}
-      > */}
-      {/* <CategoryDropdown selected={selected} onChange={setSelected} /> */}
-      {/* </div> */}
+      <div style={{ textAlign: "center", marginTop: "10%",fontWeight:'bold',fontSize:'1.5rem' }}>{category}</div>
       <div
         style={{
           display: "flex",
@@ -78,10 +40,10 @@ const Productstore = () => {
           gap: "20px",
           // marginTop: "50px",
           padding: "40px",
-          marginTop: "20px",
+       //    marginTop: "30px",
         }}
       >
-        {FilteredProducts.map((product) => {
+        {products.map((product) => {
           const isAlreadyFav = favorites.some((fav) => fav.id === product.id);
 
           return (
@@ -101,19 +63,6 @@ const Productstore = () => {
                 color: "black",
                 cursor: "pointer",
               }}
-              onClick={() =>
-                navigate("/Buyproduct", {
-                  state: {
-                    product: {
-                      id: product.id,
-                      title: product.title,
-                      image: product.image,
-                      price: product.price,
-                      description: product.description,
-                    },
-                  },
-                })
-              }
               className="product-card"
             >
               <div
@@ -125,9 +74,9 @@ const Productstore = () => {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`heart ${isAlreadyFav ? "filled" : ""}`}
                   viewBox="0 0 24 24"
                   onClick={() => handleToggleFavorite(product)}
+                  className={`heart ${isAlreadyFav ? "filled" : ""}`}
                 >
                   <title>{isAlreadyFav ? "Added to Fav" : "Add to fav"}</title>
                   <path
@@ -178,4 +127,4 @@ const Productstore = () => {
     </>
   );
 };
-export default Productstore;
+export default CatProducts;

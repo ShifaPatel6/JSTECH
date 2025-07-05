@@ -1,5 +1,5 @@
 .top-page-background {
-       background-image: url('../assets/background.png');
+       background-image: url('../assets/back.png');
        background-size: cover;
        min-height: 75vh;
        position: relative;
@@ -127,7 +127,7 @@
        .BackgroundText h3 {
               font-size: 0.6rem;
               color: #450b51;
-                            text-align: center;
+              text-align: center;
 
        }
 

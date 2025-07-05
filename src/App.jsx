@@ -18,6 +18,8 @@ import Header from "./components/Header";
 import Dashboard from "./Dashboard";
 import Bottompage from "./Bottompage";
 import Favorites from "./components/Favorites";
+import CatProducts from "../src/components/CatProducts";
+import Buyproduct from "./components/Buyproduct";
 function App() {
   const isLoggedIn = !!localStorage.getItem("token");
 
@@ -74,6 +76,22 @@ function App() {
           element={
             <PrivateRoute>
               <Favorites />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/CatProducts"
+          element={
+            <PrivateRoute>
+              <CatProducts />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/Buyproduct"
+          element={
+            <PrivateRoute>
+              <Buyproduct />
             </PrivateRoute>
           }
         />
